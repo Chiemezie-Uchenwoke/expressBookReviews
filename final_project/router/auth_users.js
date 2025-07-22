@@ -1,12 +1,14 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import books from './booksdb.js';
+import {books} from './booksdb.js';
 
 const regd_users = express.Router();
 let users = [];
 
 const isValid = (username) => {
   // write code to check if the username is valid
+  const isUserValid = users.find(user => user.username === username);
+  return isUserValid;
 };
 
 const authenticatedUser = (username, password) => {
