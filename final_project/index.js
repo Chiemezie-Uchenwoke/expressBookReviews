@@ -8,11 +8,12 @@ import env from "dotenv";
 env.config();
 const app = express();
 const jwtSecret = process.env.JWT_SECRET;
+const sessionSecret = process.env.SESSION_SECRET;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use("/customer", session({secret:"fingerprint_customer",resave: true, saveUninitialized: true}))
+app.use("/customer", session({secret: sessionSecret, resave: true, saveUninitialized: true}));
 
 app.use("/customer/auth/*", function auth(req,res,next){
     
